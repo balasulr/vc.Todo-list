@@ -26,8 +26,10 @@ Tasks can be added, edited, completed, restored, deleted, and are saved automati
 
 ## Future Enhancements
 
+- Disable delete buttons when lists are empty
+- Add undo for bulk deletes
+- Add animations for add/delete/complete tasks
+- Drag‑and‑drop task reordering
 - Search/filter tasks
 - Dark mode toggle
-- Animations for adding/completing tasks
 - Ability to add task categories
-- Drag‑and‑drop task reordering
