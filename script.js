@@ -21,10 +21,6 @@ function renderTasks() {
           <strong class="task-text">${task.text}</strong><br>
           <small>Added: ${task.createdAt}</small><br>
           <small>Completed: ${task.completedAt}</small>
-
-           <strong class="task-text">${task.text}</strong><br>
-           <small>Added: ${task.createdAt}</small><br>
-           <small>Completed: ${task.completedAt}</small>
         </div>
         <div>
           <button class="restore-btn" onclick="toggleComplete(${index})">↩</button>
@@ -95,6 +91,9 @@ function editTask(index) {
   }
 }
 
+const clearActiveBtn = document.getElementById("clearActiveBtn");
+const clearCompletedBtn = document.getElementById("clearCompletedBtn");
+
 function toggleComplete(index) {
   const task = tasks[index];
   task.completed = !task.completed;
@@ -112,6 +111,23 @@ function deleteTask(index) {
   tasks.splice(index, 1);
   save();
 }
+
+function deleteActiveTasks() {
+  if (!confirm("Delete all active tasks?")) return;
+
+  tasks = tasks.filter(task => task.completed);
+  save();
+}
+
+function deleteCompletedTasks() {
+  if (!confirm("Delete all completed tasks?")) return;
+
+  tasks = tasks.filter(task => !task.completed);
+  save();
+}
+
+clearActiveBtn.addEventListener("click", deleteActiveTasks);
+clearCompletedBtn.addEventListener("click", deleteCompletedTasks);
 
 function save() {
   localStorage.setItem("tasks", JSON.stringify(tasks));

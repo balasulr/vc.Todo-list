@@ -8,6 +8,8 @@ Tasks can be added, edited, completed, restored, deleted, and are saved automati
 - Add tasks with a button or by pressing Enter
 - Edit tasks using a dedicated Edit button
 - Mark tasks as complete or restore them
+- Delete tasks
+- Delete all active tasks or all completed tasks independently
 - Automatic timestamps for:
   - When a task was added
   - When a task was completed
@@ -24,8 +26,6 @@ Tasks can be added, edited, completed, restored, deleted, and are saved automati
 
 ## Future Enhancements
 
-- Clear‑completed tasks button
-- Delete tasks
 - Search/filter tasks
 - Dark mode toggle
 - Animations for adding/completing tasks

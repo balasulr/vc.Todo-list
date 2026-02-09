@@ -120,3 +120,17 @@ button:first-child {
   background: #42a5f5;
   transform: scale(1.05);
 }
+
+.danger-btn {
+  width: 100%;
+  margin-top: 12px;
+  background: #e57373;
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.danger-btn:hover {
+  background: #d32f2f;
+}

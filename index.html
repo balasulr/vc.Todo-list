@@ -14,8 +14,8 @@
         Type a task and press <strong>Enter</strong> or click
         <strong>Add</strong>.<br />
         Use <strong>✔</strong> to complete a task, <strong>✖</strong> to delete
-        it, <strong>↩</strong> to restore it, and <strong>Edit</strong> to
-        modify the task text
+        it, <strong>↩</strong> to restore it, <strong>Edit</strong> to modify
+        it, or the section buttons to delete all active or completed tasks.
       </p>
 
       <div class="input-row">
@@ -23,9 +23,18 @@
         <button id="addBtn">Add</button>
       </div>
 
+      <button id="clearActiveBtn" class="danger-btn">
+        Delete All Active Tasks
+      </button>
+
       <ul id="taskList"></ul>
 
       <h2>Completed Tasks</h2>
+
+      <button id="clearCompletedBtn" class="danger-btn">
+        Delete All Completed Tasks
+      </button>
+
       <ul id="completedList"></ul>
     </div>
 
