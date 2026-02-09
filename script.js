@@ -6,8 +6,14 @@ const completedList = document.getElementById("completedList");
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function renderTasks() {
+  // Clear existing lists
   list.innerHTML = "";
   completedList.innerHTML = "";
+  
+  // Track if there are active or completed tasks for bulk delete button states
+  let hasActiveTasks = false;
+  let hasCompletedTasks = false;
+
 
   tasks.forEach((task, index) => {
     const li = document.createElement("li");
@@ -16,6 +22,11 @@ function renderTasks() {
     // COMPLETED TASKS
     if (task.completed) {
       li.className = "completed";
+
+      // Show completed tasks in the completed section and active tasks in the active section
+      hasCompletedTasks = true;
+
+      // Show created date for active tasks, and completed date for completed tasks
       li.innerHTML = `
         <div>
           <strong class="task-text">${task.text}</strong><br>
@@ -27,10 +38,15 @@ function renderTasks() {
           <button class="edit-btn" onclick="editTask(${index})">Edit</button>
         </div>
       `;
+      // Show completed tasks in the completed section and active tasks in the active section
       completedList.appendChild(li);
 
     // ACTIVE TASKS
     } else {
+      // No special class for active tasks
+      hasActiveTasks = true;
+
+      // Show created date for active tasks, and completed date for completed tasks
       li.innerHTML = `
         <div>
           <strong class="task-text">${task.text}</strong><br>
@@ -45,6 +61,14 @@ function renderTasks() {
       list.appendChild(li);
     }
   });
+
+  // Active tasks delete button
+  clearActiveBtn.disabled = !hasActiveTasks;
+  clearActiveBtn.classList.toggle("active", hasActiveTasks);
+
+  // Completed tasks delete button
+  clearCompletedBtn.disabled = !hasCompletedTasks;
+  clearCompletedBtn.classList.toggle("active", hasCompletedTasks);
 }
 
 function addTask() {

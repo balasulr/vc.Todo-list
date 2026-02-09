@@ -124,13 +124,24 @@ button:first-child {
 .danger-btn {
   width: 100%;
   margin-top: 12px;
-  background: #e57373;
+  background: #f3b3b3; /* muted red when inactive */
   color: white;
   border-radius: 8px;
   padding: 10px;
   font-weight: 600;
+  transition: background 0.2s ease, opacity 0.2s ease;
 }
 
 .danger-btn:hover {
   background: #d32f2f;
+}
+
+.danger-btn.active {
+  background: #d32f2f; /* fully red when active */
+  opacity: 1;
+}
+
+.danger-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
