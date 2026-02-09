@@ -45,7 +45,7 @@ function renderTasks() {
         </div>
         <div>
           <button class="restore-btn" onclick="toggleComplete(${index})">↩</button>
-          <button class="delete-btn" onclick="deleteTask(${index})">✖</button>
+          <button class="delete-btn" onclick="deleteCompletedTask(${index})">✖</button>
           <button class="edit-btn" onclick="editTask(${index})">Edit</button>
         </div>
       `;
@@ -146,6 +146,12 @@ function deleteTask(index) {
   tasks.splice(index, 1);
   save();
 }
+
+function deleteCompletedTask(index) {
+  if (!confirm("Delete this completed task permanently?")) return;
+  deleteTask(index);
+}
+
 
 function deleteActiveTasks() {
   if (!confirm("Delete all active tasks?")) return;
