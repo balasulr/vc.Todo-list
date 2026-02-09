@@ -55,3 +55,68 @@ li {
   text-decoration: line-through;
   opacity: 0.6;
 }
+
+.edit-input {
+  width: 90%;
+  padding: 6px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button:first-child {
+  background: #6c63ff;
+}
+
+.button-column {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.edit-btn {
+  background: #4db6ac;
+  color: white;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  width: fit-content;
+  opacity: 0.9;
+}
+
+.edit-btn:hover {
+  background: #3fa39a;
+  transform: scale(1.05);
+}
+
+.button-column button {
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.complete-btn {
+  background: #4caf50;
+}
+
+.complete-btn:hover {
+  background: #43a047;
+  transform: scale(1.05);
+}
+
+.delete-btn {
+  background: #e57373;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}
+
+.restore-btn {
+  background: #64b5f6;
+}
+
+.restore-btn:hover {
+  background: #42a5f5;
+  transform: scale(1.05);
+}

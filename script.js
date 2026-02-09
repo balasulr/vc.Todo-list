@@ -11,27 +11,39 @@ function renderTasks() {
 
   tasks.forEach((task, index) => {
     const li = document.createElement("li");
+    li.setAttribute("data-index", index);
 
+    // COMPLETED TASKS
     if (task.completed) {
       li.className = "completed";
       li.innerHTML = `
         <div>
-          <strong>${task.text}</strong><br>
+          <strong class="task-text">${task.text}</strong><br>
           <small>Added: ${task.createdAt}</small><br>
           <small>Completed: ${task.completedAt}</small>
+
+           <strong class="task-text">${task.text}</strong><br>
+           <small>Added: ${task.createdAt}</small><br>
+           <small>Completed: ${task.completedAt}</small>
         </div>
-        <button onclick="toggleComplete(${index})">↩</button>
+        <div>
+          <button class="restore-btn" onclick="toggleComplete(${index})">↩</button>
+          <button class="edit-btn" onclick="editTask(${index})">Edit</button>
+        </div>
       `;
       completedList.appendChild(li);
+
+    // ACTIVE TASKS
     } else {
       li.innerHTML = `
         <div>
-          <strong>${task.text}</strong><br>
+          <strong class="task-text">${task.text}</strong><br>
           <small>Added: ${task.createdAt}</small>
         </div>
         <div>
-          <button onclick="toggleComplete(${index})">✔</button>
-          <button onclick="deleteTask(${index})">✖</button>
+          <button class="complete-btn" onclick="toggleComplete(${index})">✔</button>
+          <button class="delete-btn" onclick="deleteTask(${index})">✖</button>
+          <button class="edit-btn" onclick="editTask(${index})">Edit</button>
         </div>
       `;
       list.appendChild(li);
@@ -51,6 +63,36 @@ function addTask() {
 
   input.value = "";
   save();
+}
+
+function editTask(index) {
+  const li = document.querySelector(`li[data-index="${index}"]`);
+  const task = tasks[index];
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.value = task.text;
+  input.className = "edit-input";
+
+  const textElement = li.querySelector(".task-text");
+  textElement.replaceWith(input);
+  input.focus();
+
+  input.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      saveEdit();
+    }
+  });
+
+  input.addEventListener("blur", saveEdit);
+
+  function saveEdit() {
+    const newText = input.value.trim();
+    if (newText !== "") {
+      task.text = newText;
+    }
+    save();
+  }
 }
 
 function toggleComplete(index) {
