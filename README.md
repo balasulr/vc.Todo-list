@@ -16,6 +16,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - **Edit tasks** using a dedicated Edit button
 - Mark tasks as complete or restore them
 - Delete individual tasks
+- Delete tasks directly from both active and completed sections
 - Automatic timestamps for:
   - When a task is **added**
   - When a task is **completed**
@@ -48,8 +49,10 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
+- Add confirmation only for completed deletes
+- Undo for bulk delete actions
+- Trash/ archive section
 - Add smooth transitions between light/dark
 - Animations for adding, editing and deleting tasks
 - Task categories or tags
 - Drag‑and‑drop task reordering
-- Undo for bulk delete actions

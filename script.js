@@ -45,6 +45,7 @@ function renderTasks() {
         </div>
         <div>
           <button class="restore-btn" onclick="toggleComplete(${index})">↩</button>
+          <button class="delete-btn" onclick="deleteTask(${index})">✖</button>
           <button class="edit-btn" onclick="editTask(${index})">Edit</button>
         </div>
       `;
