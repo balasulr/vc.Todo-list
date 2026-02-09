@@ -84,5 +84,4 @@ input.addEventListener("keypress", function (e) {
 }
 });
 
-
 renderTasks();

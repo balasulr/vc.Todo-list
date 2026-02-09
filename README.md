@@ -1,6 +1,7 @@
 To‑Do List App
-A clean, minimal, vibe‑coded to‑do list application built with HTML, CSS, and JavaScript.
-Tasks can be added, completed, restored, deleted, and are saved automatically using localStorage.
+
+- A clean, minimal, vibe‑coded to‑do list application built with HTML, CSS, and JavaScript.
+  Tasks can be added, completed, restored, deleted, and are saved automatically using localStorage.
 
 Features:
 
@@ -22,8 +23,8 @@ How to Run
 Future Enhancements
 
 - Task editing
-- Search/filter tasks
 - Clear‑completed tasks button
+- Search/filter tasks
 - Dark mode toggle
 - Animations for adding/completing tasks
 - Ability to add task categories
