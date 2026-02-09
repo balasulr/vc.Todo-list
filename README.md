@@ -8,6 +8,11 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 ## Features
 
 - Add tasks using the **Add** button or by pressing **Enter**
+- **Search tasks** with a live search bar
+- **Filter tasks** by:
+  - All
+  - Active
+  - Completed
 - **Edit tasks** using a dedicated Edit button
 - Mark tasks as complete or restore them
 - Delete individual tasks
@@ -21,6 +26,8 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - Bulk delete buttons:
   - Are **disabled** when their list is empty
   - Become **fully active and red** when tasks are present
+- **Dark Mode toggle** with persistent theme storage
+- All text, inputs, and placeholders adapt correctly to dark mod
 - Persistent storage using `localStorage`
 - Clean, modern UI with subtle styling
 - Fully responsive layout
@@ -41,8 +48,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
-- Search and filter tasks
-- Dark mode toggle
+- Add smooth transitions between light/dark
 - Animations for adding, editing and deleting tasks
 - Task categories or tags
 - Drag‑and‑drop task reordering

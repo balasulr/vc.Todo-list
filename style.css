@@ -1,3 +1,5 @@
+/* Basic Layout */
+
 body {
   font-family: sans-serif;
   background: #f7f7fb;
@@ -21,6 +23,8 @@ body {
   line-height: 1.5;
 }
 
+/* Input and Buttons */
+
 .input-row {
   display: flex;
   gap: 10px;
@@ -42,6 +46,11 @@ button {
   cursor: pointer;
 }
 
+button:first-child {
+  background: #6c63ff;
+}
+
+/* Task List */
 li {
   display: flex;
   justify-content: space-between;
@@ -64,10 +73,7 @@ li {
   border-radius: 6px;
 }
 
-button:first-child {
-  background: #6c63ff;
-}
-
+/* Button Columns */
 .button-column {
   display: flex;
   flex-direction: column;
@@ -75,6 +81,11 @@ button:first-child {
   align-items: center;
 }
 
+.button-column button {
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* Action Buttons */
 .edit-btn {
   background: #4db6ac;
   color: white;
@@ -88,10 +99,6 @@ button:first-child {
 .edit-btn:hover {
   background: #3fa39a;
   transform: scale(1.05);
-}
-
-.button-column button {
-  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .complete-btn {
@@ -121,6 +128,7 @@ button:first-child {
   transform: scale(1.05);
 }
 
+/*Bulk Delete Button */
 .danger-btn {
   width: 100%;
   margin-top: 12px;
@@ -144,4 +152,105 @@ button:first-child {
 .danger-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+/*Search and Filter */
+.search-row {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-btn {
+  flex: 1;
+  background: #d0d4ff;
+  color: #333;
+  padding: 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.filter-btn.active {
+  background: #4a6cf7;
+  color: white;
+}
+
+/* Dark Mode Toggle*/
+.dark-toggle {
+  width: 100%;
+  margin-bottom: 15px;
+  background: #333;
+  color: white;
+}
+
+/* Dark Mode */
+body.dark {
+  background: #1e1e1e;
+  color: #eee;
+}
+
+body.dark .container {
+  background: #2a2a2a;
+}
+
+body.dark li {
+  background: #3a3a3a;
+}
+
+body.dark li,
+body.dark li strong,
+body.dark li small {
+  color: white;
+}
+
+body.dark li.completed {
+  color: #cccccc;
+}
+
+body.dark .filter-btn {
+  background: #555;
+  color: white;
+}
+
+body.dark .filter-btn.active {
+  background: #4a6cf7;
+}
+
+body.dark .danger-btn {
+  background: #b74a4a;
+}
+
+body.dark .danger-btn.active {
+  background: #d32f2f;
+}
+
+body.dark .dark-toggle {
+  background: #444;
+  color: white;
+}
+
+/* Ensure instructions and search input placeholder are visible in dark mode */
+body.dark .instructions {
+  color: white !important;
+}
+
+/* Style the search input for dark mode */
+body.dark input {
+  background: #444;
+  color: white !important;
+  border-color: #666;
+}
+
+body.dark input::placeholder {
+  color: #cccccc !important;
+}
+
+body.dark #searchInput {
+  color: white !important;
 }

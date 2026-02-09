@@ -4,6 +4,9 @@ const list = document.getElementById("taskList");
 const completedList = document.getElementById("completedList");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let currentFilter = "all";
+let searchQuery = "";
+let darkMode = localStorage.getItem("darkMode") === "true";
 
 function renderTasks() {
   // Clear existing lists
@@ -14,8 +17,15 @@ function renderTasks() {
   let hasActiveTasks = false;
   let hasCompletedTasks = false;
 
+  const filteredTasks = tasks.filter(task => {
+  const matchesSearch = task.text.toLowerCase().includes(searchQuery);
 
-  tasks.forEach((task, index) => {
+  if (currentFilter === "active") return !task.completed && matchesSearch;
+  if (currentFilter === "completed") return task.completed && matchesSearch;
+  return matchesSearch; // "all"
+});
+
+  filteredTasks.forEach((task, index) => {
     const li = document.createElement("li");
     li.setAttribute("data-index", index);
 
@@ -167,3 +177,37 @@ input.addEventListener("keypress", function (e) {
 });
 
 renderTasks();
+
+const searchInput = document.getElementById("searchInput");
+const filterButtons = document.querySelectorAll(".filter-btn");
+
+searchInput.addEventListener("input", () => {
+  searchQuery = searchInput.value.toLowerCase();
+  renderTasks();
+});
+
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    currentFilter = btn.dataset.filter;
+
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    renderTasks();
+  });
+});
+
+const darkModeToggle = document.getElementById("darkModeToggle");
+
+function applyDarkMode() {
+  document.body.classList.toggle("dark", darkMode);
+  darkModeToggle.textContent = darkMode ? "☀️ Light Mode" : "🌙 Dark Mode";
+}
+
+darkModeToggle.addEventListener("click", () => {
+  darkMode = !darkMode;
+  localStorage.setItem("darkMode", darkMode);
+  applyDarkMode();
+});
+
+applyDarkMode();
