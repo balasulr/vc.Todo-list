@@ -7,36 +7,53 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Features
 
-- Navigation buttons to jump directly to Active Tasks, Completed Tasks, or Trash
-- Back to Top button with smooth scrolling and auto-show on scroll
-- Add tasks using the **Add** button or by pressing **Enter**
-- **Live search** with instant filtering
-- Filter tasks by **All**, **Active**, or **Completed**
-- **Edit tasks** using a dedicated Edit button
+### Navigation & Layout
+
+- Jump buttons to instantly navigate to Active Tasks, Completed Tasks, or Trash
+- Back to Top button with smooth scrolling and auto‑show on scroll
+- Fully responsive layout with clean, modern styling
+
+### Task Creation & Editing
+
+- Add tasks using the Add button or by pressing Enter
+- Optional scheduling with built‑in **date and time picker**
+- Edit tasks inline with a dedicated Edit button
+
+### Search & Filtering
+
+- Live search with instant filtering
+- Filter tasks by All, Active, or Completed
+
+### Task Management
+
 - Mark tasks as complete or restore them
 - Delete tasks from both active and completed sections
-- Automatic timestamps for when tasks are **added** and **completed**
-- Separate **Active Tasks** and **Completed Tasks** sections
-- Independent bulk actions for:
-  - **Active tasks**
-  - **Completed tasks**
-- Bulk action buttons:
-  - Are **disabled** when no tasks are present
-  - Become **active and visually emphasized** when available
-- **Dark Mode toggle** with persistent theme storage
+- Automatic timestamps for when tasks are added and completed
+- Scheduled tasks display their chosen date and time
+
+### Sections & Organization
+
+- Separate Active Tasks, Completed Tasks, and Trash sections
+- Trash‑first deletion model to prevent accidental data loss
+- Restore or permanently delete tasks from Trash
+
+### Bulk Actions
+
+- Independent bulk actions for Active and Completed tasks
+- Bulk buttons disable when no tasks are available
+- Bulk actions move tasks to Trash with inline confirmation feedback
+- Undo support for bulk actions with paired status messaging
+
+### Appearance & UX
+
+- Dark Mode toggle with persistent theme storage
 - All text, inputs, and placeholders adapt correctly to dark mode
-- Confirmation required when deleting completed tasks
-- **Undo support** for bulk actions
-- **Trash section** for safe task recovery
-- Deleting a task moves it to Trash instead of deleting permantently
-- Tasks can be **restored or permanently deleted** from Trash
-- Clear Trash button with confirmation and inline status feedback
-- Bulk actions move tasks to Trash with **inline confirmation feedback**
-- Undo and status feedback are displayed **side‑by‑side above the Trash section**
-- Schedule future tasks using a built‑in date and time picker
-- Persistent storage using `localStorage`
-- Clean, modern UI with subtle styling
-- Fully responsive layout
+- Smooth in‑page navigation and clear visual affordances
+- Defensive UX for destructive actions with confirmation prompts
+
+### Persistence
+
+- All tasks, states, and theme preferences saved using `localStorage`
 
 ## How to Run
 
