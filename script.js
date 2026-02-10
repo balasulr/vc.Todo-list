@@ -61,71 +61,61 @@ document
   .querySelector(`.filter-btn[data-filter="${currentFilter}"]`)
   .classList.add("active");
 
-  filteredTasks.forEach((task, index) => {
-    const li = document.createElement("li");
-    li.setAttribute("data-index", index);
+  filteredTasks.forEach(task => {
+  const li = document.createElement("li");
+  const originalIndex = tasks.indexOf(task);
+  li.setAttribute("data-index", originalIndex);
 
-    // Trash tasks
-    if (task.trash) {
-      // Show created date for active tasks, and completed date for completed tasks
-      li.innerHTML = `
-        <div>
-          <strong class="task-text">${task.text}</strong><br>
-          <small>Deleted</small>
-        </div>
-        <div>
-          <button class="restore-btn" onclick="restoreFromTrash(${index})">↩</button>
-          <button class="delete-btn" onclick="permanentDelete(${index})">✖</button>
-        </div>
-      `;
-      // Don't show trashed tasks in active/completed lists
-      trashList.appendChild(li);
-      return;
-    }
+  if (task.trash) {
+    li.innerHTML = `
+      <div>
+        <strong class="task-text">${task.text}</strong><br>
+        <small>Deleted</small>
+      </div>
+      <div>
+        <button class="restore-btn" onclick="restoreFromTrash(${originalIndex})">↩</button>
+        <button class="delete-btn" onclick="permanentDelete(${originalIndex})">✖</button>
+      </div>
+    `;
+    trashList.appendChild(li);
+    return;
+  }
 
-    // COMPLETED TASKS
-    if (task.completed) {
-      li.className = "completed";
+  if (task.completed) {
+    hasCompletedTasks = true;
 
-      // Show completed tasks in the completed section and active tasks in the active section
-      hasCompletedTasks = true;
-
-      // Show created date for active tasks, and completed date for completed tasks
-      li.innerHTML = `
-        <div>
-          <strong class="task-text">${task.text}</strong><br>
-          <small>Added: ${task.createdAt}</small><br>
-          <small>Completed: ${task.completedAt}</small>
-        </div>
-        <div>
-          <button class="restore-btn" onclick="toggleComplete(${index})">↩</button>
-          <button class="delete-btn" onclick="deleteCompletedTask(${index})">✖</button>
-          <button class="edit-btn" onclick="editTask(${index})">Edit</button>
-        </div>
-      `;
-      completedList.appendChild(li);
-
-    // ACTIVE TASKS
+    li.className = "completed";
+    li.innerHTML = `
+      <div>
+        <strong class="task-text">${task.text}</strong><br>
+        <small>Added: ${task.createdAt}</small><br>
+        <small>Completed: ${task.completedAt}</small><br>
+        ${task.scheduledFor ? `<br><small>Scheduled: ${task.scheduledFor}</small>` : ""}
+      </div>
+      <div>
+        <button class="restore-btn" onclick="toggleComplete(${originalIndex})">↩</button>
+        <button class="delete-btn" onclick="deleteCompletedTask(${originalIndex})">✖</button>
+      </div>
+    `;
+    completedList.appendChild(li);
   } else {
-      // No special class for active tasks
-      hasActiveTasks = true;
+    hasActiveTasks = true;
 
-      // Show created date for active tasks, and completed date for completed tasks
-      li.innerHTML = `
-        <div>
-          <strong class="task-text">${task.text}</strong><br>
-          <small>Added: ${task.createdAt}</small>
-          <small>${task.scheduledFor ? `Scheduled: ${task.scheduledFor}` : ""}</small>
-        </div>
-        <div>
-          <button class="complete-btn" onclick="toggleComplete(${index})">✔</button>
-          <button class="delete-btn" onclick="deleteTask(${index})">✖</button>
-          <button class="edit-btn" onclick="editTask(${index})">Edit</button>
-        </div>
-      `;
-      list.appendChild(li);
-    }
-  });
+    li.innerHTML = `
+      <div>
+        <strong class="task-text">${task.text}</strong><br>
+        <small>Added: ${task.createdAt}</small>
+        <small>${task.scheduledFor ? `Scheduled: ${task.scheduledFor}` : ""}</small>
+      </div>
+      <div>
+        <button class="complete-btn" onclick="toggleComplete(${originalIndex})">✔</button>
+        <button class="delete-btn" onclick="deleteTask(${originalIndex})">✖</button>
+        <button class="edit-btn" onclick="editTask(${originalIndex})">Edit</button>
+      </div>
+    `;
+    list.appendChild(li);
+  }
+});
 
   // Active tasks delete button
   clearActiveBtn.disabled = !hasActiveTasks;
@@ -134,11 +124,6 @@ document
   // Completed tasks delete button
   clearCompletedBtn.disabled = !hasCompletedTasks;
   clearCompletedBtn.classList.toggle("active", hasCompletedTasks);
-
-  //const hasTrashItems = tasks.some(task => task.trash);
-  //clearTrashBtn.disabled = !hasTrashItems;
-  //clearTrashBtn.classList.toggle("active", hasTrashItems);
-
 }
 
 function addTask() {
@@ -240,38 +225,42 @@ function editTask(index) {
 
   textInput.focus();
 
-  // SAVE LOGIC
   saveBtn.addEventListener("click", () => {
-    const newText = textInput.value.trim();
-    const newDate = dateInput.value;
-    const newTime = timeInput.value;
+  const newText = textInput.value.trim();
+  const newDate = dateInput.value;
+  const newTime = timeInput.value;
 
-    if (newText !== "") {
-      task.text = newText;
+  if (newText !== "") {
+    task.text = newText;
+  }
+
+  const userEnteredSchedule = newDate && newTime;
+  const originallyScheduled = !!task.scheduledFor;
+
+  // CASE 1: User entered a new schedule
+  if (userEnteredSchedule) {
+    const selectedDateTime = new Date(`${newDate}T${newTime}`);
+    const now = new Date();
+
+    if (selectedDateTime < now) {
+      alert("Scheduled time cannot be in the past.");
+      return;
     }
 
-    // Scheduling logic
-    if (newDate && newTime) {
-      const selectedDateTime = new Date(`${newDate}T${newTime}`);
-      const now = new Date();
+    task.scheduledFor = `${newDate} ${newTime}`;
+  }
 
-      if (selectedDateTime < now) {
-        alert("Scheduled time cannot be in the past.");
-        return;
-      }
+  // CASE 2: Task was scheduled before, but user cleared fields
+  else if (originallyScheduled && !userEnteredSchedule) {
+    task.scheduledFor = null;
+  }
 
-      task.scheduledFor = `${newDate} ${newTime}`;
-    } else {
-      task.scheduledFor = null;
-    }
+  // CASE 3: Task was never scheduled and user left fields empty
+  // → do nothing (do NOT add a schedule)
 
-    save();
-  });
+  save();
+});
 
-  // CANCEL LOGIC
-  cancelBtn.addEventListener("click", () => {
-    renderTasks(); // simply re-render to restore original UI
-  });
 }
 
 const clearActiveBtn = document.getElementById("clearActiveBtn");

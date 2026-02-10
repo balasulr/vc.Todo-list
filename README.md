@@ -79,7 +79,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
-- Fix editing date & time in Completed Tasks not working
+- Format scheduled dates
 - Scheduled Tasks having own button next to All, Active and Completed called Upcoming so can see Scheduled Tasks
 - Adding sorting by scheduled date
 - Once task reaches the scheduled time, removing the Scheduled and have it be active
