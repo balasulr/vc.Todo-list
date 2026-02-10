@@ -9,6 +9,27 @@ let searchQuery = "";
 let darkMode = localStorage.getItem("darkMode") === "true";
 let lastBulkDelete = null;
 
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+document.getElementById("backToTopBtn").addEventListener("click", scrollToTop);
+
+window.addEventListener("scroll", () => {
+  const btn = document.getElementById("backToTopBtn");
+  btn.style.display = window.scrollY > 300 ? "block" : "none";
+});
+
 function renderTasks() {
   // Clear existing lists
   list.innerHTML = "";

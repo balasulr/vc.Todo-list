@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  width: 350px;
+  width: 500px;
   background: white;
   padding: 20px;
   border-radius: 12px;
@@ -273,5 +273,48 @@ body.dark #searchInput {
 #clearTrashBtn {
   background-color: #e53935;
   color: white;
+  opacity: 1;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.nav-buttons button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.nav-buttons button:hover {
+  background-color: #357ab8;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 14px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+  display: none;
+}
+
+.back-to-top:hover {
   opacity: 1;
 }

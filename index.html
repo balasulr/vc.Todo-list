@@ -10,6 +10,13 @@
     <div class="container">
       <h1>To‑Do List</h1>
 
+      <div class="nav-buttons">
+      <button onclick="scrollToSection('activeSection')">Jump to Active Tasks</button>
+      <button onclick="scrollToSection('completedSection')">Jump to Completed Tasks</button>
+      <button onclick="scrollToSection('trashSection')">Jump to Trash</button>
+    </div>
+
+
       <button id="darkModeToggle" class="dark-toggle">🌙 Dark Mode</button>
 
       <p class="instructions">
@@ -35,31 +42,33 @@
         <button id="addBtn">Add</button>
       </div>
 
+      <h2 id="activeSection">Active Tasks</h2>
+      <ul id="taskList"></ul>
+
       <button id="clearActiveBtn" class="danger-btn">
         Delete All Active Tasks
       </button>
 
-      <ul id="taskList"></ul>
-
-      <h2>Completed Tasks</h2>
+      <h2 id="completedSection">Completed Tasks</h2>
+      <ul id="completedList"></ul>
 
       <button id="clearCompletedBtn" class="danger-btn">
         Move All Completed Tasks to Trash
       </button>
 
-      <ul id="completedList"></ul>
-
+      <h2 id="trashSection">Trash</h2>
+      <ul id="trashList"></ul>
+      
       <button id="clearTrashBtn" class="danger-btn">
         Empty Trash
-      </button>
+      </button>      
 
       <div id="actionFeedback" class="action-feedback">
         <button id="undoBtn" style="display: none">Undo Last Delete</button>
         <span id="statusMsg" class="status-msg"></span>
       </div>
 
-      <h2>Trash</h2>
-      <ul id="trashList"></ul>
+    <button id="backToTopBtn" class="back-to-top">↑ Back to Top</button>
 
     <script src="script.js"></script>
   </body>

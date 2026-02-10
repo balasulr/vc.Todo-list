@@ -7,6 +7,8 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Features
 
+- Navigation buttons to jump directly to Active Tasks, Completed Tasks, or Trash
+- Back to Top button with smooth scrolling and auto-show on scroll
 - Add tasks using the **Add** button or by pressing **Enter**
 - **Live search** with instant filtering
 - Filter tasks by **All**, **Active**, or **Completed**
@@ -46,6 +48,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - State‑driven UI (buttons reflect actual task availability)
 - Clear separation of destructive actions
 - Visual affordances for edit, complete, restore, and delete
+- Smooth in-page navigation for quick access to each task section
 - Defensive UX (disabled actions when unavailable)
 - Defensive UX for destructive actions with confirmation and clear feedback
 - Clean DOM updates with a single render cycle
