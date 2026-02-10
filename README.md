@@ -63,17 +63,15 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Design Highlights
 
-- State‑driven UI (buttons reflect actual task availability)
-- Clear separation of destructive actions
-- Visual affordances for edit, complete, restore, and delete
-- Smooth in-page navigation for quick access to each task section
-- Defensive UX (disabled actions when unavailable)
-- Defensive UX for destructive actions with confirmation and clear feedback
-- Clean DOM updates with a single render cycle
-- Clear, non‑destructive feedback for bulk actions
-- Inline status messaging paired with Undo for user confidence
+- State‑driven UI with buttons that reflect real task availability
+- Clear separation of destructive actions with confirmation prompts
+- Intuitive visual affordances for editing, completing, restoring, and deleting tasks
+- Smooth in‑page navigation for fast movement between sections
+- Defensive UX: disabled actions when unavailable, confirmations for destructive steps
+- Clean, efficient DOM updates with a single render cycle
+- Inline status messaging paired with Undo for safe, reversible bulk actions
 - Trash‑first deletion model to prevent accidental data loss
-- Optional scheduling fields allow users to plan tasks with specific dates and times
+- Optional scheduling fields for planning tasks with specific dates and times
 
 ## Future Enhancements
 
