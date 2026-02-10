@@ -191,30 +191,87 @@ function editTask(index) {
   const li = document.querySelector(`li[data-index="${index}"]`);
   const task = tasks[index];
 
-  const input = document.createElement("input");
-  input.type = "text";
-  input.value = task.text;
-  input.className = "edit-input";
+  const contentDiv = li.querySelector("div");
 
-  const textElement = li.querySelector(".task-text");
-  textElement.replaceWith(input);
-  input.focus();
+  // Clear the content div so we can rebuild it cleanly
+  contentDiv.innerHTML = "";
 
-  input.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-      saveEdit();
-    }
-  });
+  // TEXT INPUT
+  const textInput = document.createElement("input");
+  textInput.type = "text";
+  textInput.value = task.text;
+  textInput.className = "edit-input";
 
-  input.addEventListener("blur", saveEdit);
+  // DATE INPUT
+  const dateInput = document.createElement("input");
+  dateInput.type = "date";
+  dateInput.className = "edit-input";
 
-  function saveEdit() {
-    const newText = input.value.trim();
+  // TIME INPUT
+  const timeInput = document.createElement("input");
+  timeInput.type = "time";
+  timeInput.className = "edit-input";
+
+  // Pre-fill if scheduled
+  if (task.scheduledFor) {
+    const [date, time] = task.scheduledFor.split(" ");
+    dateInput.value = date;
+    timeInput.value = time;
+  }
+
+  // SAVE BUTTON
+  const saveBtn = document.createElement("button");
+  saveBtn.textContent = "Save";
+  saveBtn.className = "edit-save-btn";
+  saveBtn.style.background = "#4caf50";
+
+  // CANCEL BUTTON
+  const cancelBtn = document.createElement("button");
+  cancelBtn.textContent = "Cancel";
+  cancelBtn.className = "edit-cancel-btn";
+  cancelBtn.style.background = "#e57373";
+
+  // Append inputs + buttons
+  contentDiv.appendChild(textInput);
+  contentDiv.appendChild(dateInput);
+  contentDiv.appendChild(timeInput);
+  contentDiv.appendChild(saveBtn);
+  contentDiv.appendChild(cancelBtn);
+
+  textInput.focus();
+
+  // SAVE LOGIC
+  saveBtn.addEventListener("click", () => {
+    const newText = textInput.value.trim();
+    const newDate = dateInput.value;
+    const newTime = timeInput.value;
+
     if (newText !== "") {
       task.text = newText;
     }
+
+    // Scheduling logic
+    if (newDate && newTime) {
+      const selectedDateTime = new Date(`${newDate}T${newTime}`);
+      const now = new Date();
+
+      if (selectedDateTime < now) {
+        alert("Scheduled time cannot be in the past.");
+        return;
+      }
+
+      task.scheduledFor = `${newDate} ${newTime}`;
+    } else {
+      task.scheduledFor = null;
+    }
+
     save();
-  }
+  });
+
+  // CANCEL LOGIC
+  cancelBtn.addEventListener("click", () => {
+    renderTasks(); // simply re-render to restore original UI
+  });
 }
 
 const clearActiveBtn = document.getElementById("clearActiveBtn");

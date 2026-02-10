@@ -331,3 +331,38 @@ body.dark #searchInput {
   border-radius: 6px;
   cursor: pointer;
 }
+
+/* Edit Mode Buttons */
+.edit-save-btn,
+.edit-cancel-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-right: 8px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* Save button */
+.edit-save-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.edit-save-btn:hover {
+  background: #43a047;
+  transform: scale(1.05);
+}
+
+/* Cancel button */
+.edit-cancel-btn {
+  background: #e57373;
+  color: white;
+}
+
+.edit-cancel-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}

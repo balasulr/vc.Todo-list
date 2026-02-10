@@ -19,8 +19,9 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - Optional scheduling with a built‑in date and time picker
 - “Schedule Task” button that reveals or hides scheduling fields on demand
 - Validation prevents selecting a date or time in the past
-
 - Edit tasks inline with a dedicated Edit button
+- Editing mode includes Save and Cancel controls for clear, intentional updates
+- Ability to edit date and time when Editing tasks
 
 ### Search & Filtering
 
@@ -78,10 +79,10 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
+- Fix editing date & time in Completed Tasks not working
 - Scheduled Tasks having own button next to All, Active and Completed called Upcoming so can see Scheduled Tasks
 - Adding sorting by scheduled date
 - Once task reaches the scheduled time, removing the Scheduled and have it be active
-- Ability to edit date and time when Editing tasks
 
 - Choosing if want to add a task or a reminder
 - Task categories or tags
