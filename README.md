@@ -39,6 +39,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 ### Sections & Organization
 
 - Separate Active Tasks, Completed Tasks, and Trash sections
+- Dedicated Upcoming Tasks section showing all scheduled tasks with their current status
 - Trash‑first deletion model to prevent accidental data loss
 - Restore or permanently delete tasks from Trash
 
@@ -80,7 +81,6 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
-- Add a dedicated Upcoming section header when that filter is active
 - Highlight overdue scheduled tasks
 - Format scheduled dates
 - Once task reaches the scheduled time, removing the Scheduled and have it be active

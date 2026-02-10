@@ -35,6 +35,11 @@ function renderTasks() {
   list.innerHTML = "";
   completedList.innerHTML = "";
 
+  // Upcoming tasks are shown in a separate section
+  const upcomingList = document.getElementById("upcomingList");
+  upcomingList.innerHTML = "";
+
+  // Trash is rendered separately to always show trashed items regardless of filter/search
   const trashList = document.getElementById("trashList");
   trashList.innerHTML = "";
 
@@ -133,6 +138,26 @@ document
     list.appendChild(li);
   }
 });
+
+  // Build Upcoming section (all scheduled tasks, regardless of filter)
+  const upcomingTasks = tasks
+    .filter(task => task.scheduledFor && !task.trash)
+    .sort((a, b) => new Date(a.scheduledFor) - new Date(b.scheduledFor));
+
+  upcomingTasks.forEach(task => {
+    const li = document.createElement("li");
+    const index = tasks.indexOf(task);
+
+    li.innerHTML = `
+      <div>
+        <strong class="task-text">${task.text}</strong><br>
+        <small>Status: ${task.completed ? "Completed" : "Active"}</small><br>
+        <small>Scheduled: ${task.scheduledFor}</small>
+      </div>
+    `;
+
+    upcomingList.appendChild(li);
+  });
 
   // Active tasks delete button
   clearActiveBtn.disabled = !hasActiveTasks;
