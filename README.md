@@ -33,6 +33,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - Clear Trash button with confirmation and inline status feedback
 - Bulk actions move tasks to Trash with **inline confirmation feedback**
 - Undo and status feedback are displayed **side‑by‑side above the Trash section**
+- Schedule future tasks using a built‑in date and time picker
 - Persistent storage using `localStorage`
 - Clean, modern UI with subtle styling
 - Fully responsive layout
@@ -55,10 +56,10 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - Clear, non‑destructive feedback for bulk actions
 - Inline status messaging paired with Undo for user confidence
 - Trash‑first deletion model to prevent accidental data loss
+- Optional scheduling fields allow users to plan tasks with specific dates and times
 
 ## Future Enhancements
 
-- Button to choose if want to jump down to To-Do List or Completed Tasks or Trash
 - Scheduling future tasks (choosing date & time in a calender)
 - Choosing if want to add a task or a reminder
 - Task categories or tags

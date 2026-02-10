@@ -106,6 +106,7 @@ function renderTasks() {
         <div>
           <strong class="task-text">${task.text}</strong><br>
           <small>Added: ${task.createdAt}</small>
+          <small>${task.scheduledFor ? `Scheduled: ${task.scheduledFor}` : ""}</small>
         </div>
         <div>
           <button class="complete-btn" onclick="toggleComplete(${index})">✔</button>
@@ -134,17 +135,31 @@ function renderTasks() {
 function addTask() {
   if (input.value.trim() === "") return;
 
+  const dateInput = document.getElementById("taskDate").value;
+  const timeInput = document.getElementById("taskTime").value;
+
+  let scheduledFor = null;
+
+  if (dateInput && timeInput) {
+    scheduledFor = `${dateInput} ${timeInput}`;
+  }
+
   tasks.push({
     text: input.value,
     completed: false,
     trash: false,
     createdAt: new Date().toLocaleString(),
-    completedAt: null
+    completedAt: null,
+    scheduledFor: scheduledFor
   });
 
   input.value = "";
+  document.getElementById("taskDate").value = "";
+  document.getElementById("taskTime").value = "";
+
   save();
 }
+
 
 function editTask(index) {
   const li = document.querySelector(`li[data-index="${index}"]`);
