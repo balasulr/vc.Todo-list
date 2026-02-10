@@ -198,7 +198,7 @@ function showStatus(message) {
 function deleteCompletedTasks() {
   if (!confirm("Move all completed tasks to Trash?")) return;
 
-  //lastBulkDelete = tasks.filter(task => task.completed && !task.trash);
+  lastBulkDelete = tasks.filter(task => task.completed && !task.trash);
 
   tasks.forEach(task => {
     if (task.completed) {

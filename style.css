@@ -235,12 +235,10 @@ body.dark .dark-toggle {
   color: white;
 }
 
-/* Ensure instructions and search input placeholder are visible in dark mode */
 body.dark .instructions {
   color: white !important;
 }
 
-/* Style the search input for dark mode */
 body.dark input {
   background: #444;
   color: white !important;
@@ -255,10 +253,19 @@ body.dark #searchInput {
   color: white !important;
 }
 
+/* Status Message */
 .status-msg {
   margin-left: 12px;
   color: #4caf50;
   font-size: 0.9rem;
   opacity: 0;
   transition: opacity 0.3s ease;
+}
+
+/* Action Feedback */
+.action-feedback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0;
 }
