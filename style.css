@@ -254,3 +254,11 @@ body.dark input::placeholder {
 body.dark #searchInput {
   color: white !important;
 }
+
+.status-msg {
+  margin-left: 12px;
+  color: #4caf50;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}

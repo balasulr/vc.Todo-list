@@ -185,10 +185,20 @@ function deleteActiveTasks() {
   save();
 }
 
+function showStatus(message) {
+  const statusMsg = document.getElementById("statusMsg");
+  statusMsg.textContent = message;
+  statusMsg.style.opacity = "1";
+
+  setTimeout(() => {
+    statusMsg.style.opacity = "0";
+  }, 3000);
+}
+
 function deleteCompletedTasks() {
   if (!confirm("Move all completed tasks to Trash?")) return;
 
-  lastBulkDelete = tasks.filter(task => task.completed && !task.trash);
+  //lastBulkDelete = tasks.filter(task => task.completed && !task.trash);
 
   tasks.forEach(task => {
     if (task.completed) {
@@ -196,6 +206,7 @@ function deleteCompletedTasks() {
     }
   });
 
+  showStatus("Completed tasks moved to Trash.");
   save();
 }
 
