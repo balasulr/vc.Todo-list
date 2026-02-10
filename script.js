@@ -7,27 +7,51 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let currentFilter = "all";
 let searchQuery = "";
 let darkMode = localStorage.getItem("darkMode") === "true";
+let lastBulkDelete = null;
 
 function renderTasks() {
   // Clear existing lists
   list.innerHTML = "";
   completedList.innerHTML = "";
-  
+
+  const trashList = document.getElementById("trashList");
+  trashList.innerHTML = "";
+
   // Track if there are active or completed tasks for bulk delete button states
   let hasActiveTasks = false;
   let hasCompletedTasks = false;
 
   const filteredTasks = tasks.filter(task => {
-  const matchesSearch = task.text.toLowerCase().includes(searchQuery);
+    const matchesSearch = task.text.toLowerCase().includes(searchQuery);
 
-  if (currentFilter === "active") return !task.completed && matchesSearch;
-  if (currentFilter === "completed") return task.completed && matchesSearch;
-  return matchesSearch; // "all"
+    if (task.trash) return true; // Always show trashed tasks in the trash section
+
+    if (currentFilter === "active") return !task.completed && matchesSearch;
+    if (currentFilter === "completed") return task.completed && matchesSearch;
+    return matchesSearch;
 });
 
   filteredTasks.forEach((task, index) => {
     const li = document.createElement("li");
     li.setAttribute("data-index", index);
+
+    // Trash tasks
+    if (task.trash) {
+      // Show created date for active tasks, and completed date for completed tasks
+      li.innerHTML = `
+        <div>
+          <strong class="task-text">${task.text}</strong><br>
+          <small>Deleted</small>
+        </div>
+        <div>
+          <button class="restore-btn" onclick="restoreFromTrash(${index})">↩</button>
+          <button class="delete-btn" onclick="permanentDelete(${index})">✖</button>
+        </div>
+      `;
+      // Don't show trashed tasks in active/completed lists
+      trashList.appendChild(li);
+      return;
+    }
 
     // COMPLETED TASKS
     if (task.completed) {
@@ -49,11 +73,10 @@ function renderTasks() {
           <button class="edit-btn" onclick="editTask(${index})">Edit</button>
         </div>
       `;
-      // Show completed tasks in the completed section and active tasks in the active section
       completedList.appendChild(li);
 
     // ACTIVE TASKS
-    } else {
+  } else {
       // No special class for active tasks
       hasActiveTasks = true;
 
@@ -88,6 +111,7 @@ function addTask() {
   tasks.push({
     text: input.value,
     completed: false,
+    trash: false,
     createdAt: new Date().toLocaleString(),
     completedAt: null
   });
@@ -143,12 +167,12 @@ function toggleComplete(index) {
 }
 
 function deleteTask(index) {
-  tasks.splice(index, 1);
+  tasks[index].trash = true;
   save();
 }
 
 function deleteCompletedTask(index) {
-  if (!confirm("Delete this completed task permanently?")) return;
+  if (!confirm("Move this completed task to Trash?")) return;
   deleteTask(index);
 }
 
@@ -156,6 +180,7 @@ function deleteCompletedTask(index) {
 function deleteActiveTasks() {
   if (!confirm("Delete all active tasks?")) return;
 
+  lastBulkDelete = tasks.filter(task => !task.completed);
   tasks = tasks.filter(task => task.completed);
   save();
 }
@@ -163,6 +188,7 @@ function deleteActiveTasks() {
 function deleteCompletedTasks() {
   if (!confirm("Delete all completed tasks?")) return;
 
+  lastBulkDelete = tasks.filter(task => task.completed)
   tasks = tasks.filter(task => !task.completed);
   save();
 }
@@ -172,6 +198,7 @@ clearCompletedBtn.addEventListener("click", deleteCompletedTasks);
 
 function save() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
+  undoBtn.style.display = lastBulkDelete ? "block" : "none";
   renderTasks();
 }
 
@@ -218,3 +245,26 @@ darkModeToggle.addEventListener("click", () => {
 });
 
 applyDarkMode();
+
+const undoBtn = document.getElementById("undoBtn");
+undoBtn.style.display = lastBulkDelete ? "block" : "none";
+
+undoBtn.addEventListener("click", () => {
+  if (!lastBulkDelete) return;
+
+  tasks = tasks.concat(lastBulkDelete);
+  lastBulkDelete = null;
+  undoBtn.style.display = "none";
+  save();
+});
+
+function restoreFromTrash(index) {
+  tasks[index].trash = false;
+  save();
+}
+
+function permanentDelete(index) {
+  if (!confirm("Delete permanently?")) return;
+  tasks.splice(index, 1);
+  save();
+}

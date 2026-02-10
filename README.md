@@ -28,7 +28,12 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
   - Are **disabled** when their list is empty
   - Become **fully active and red** when tasks are present
 - **Dark Mode toggle** with persistent theme storage
-- All text, inputs, and placeholders adapt correctly to dark mod
+- All text, inputs, and placeholders adapt correctly to dark mode
+- Confirmation required when deleting completed tasks
+- Undo support for bulk delete actions
+- Trash section for recovering deleted tasks
+- Deleting a task moves it to Trash
+- Tasks can be restored or permanently deleted from Trash
 - Persistent storage using `localStorage`
 - Clean, modern UI with subtle styling
 - Fully responsive layout
