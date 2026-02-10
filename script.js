@@ -57,7 +57,17 @@ function renderTasks() {
       return task.scheduledFor && !task.trash && matchesSearch;
 
     return matchesSearch;
-});
+  }
+);
+
+// Sort upcoming tasks by scheduled date (earliest first)
+if (currentFilter === "upcoming") {
+  filteredTasks.sort((a, b) => {
+    const dateA = new Date(a.scheduledFor);
+    const dateB = new Date(b.scheduledFor);
+    return dateA - dateB;
+  });
+}
 
 // Update filter button highlight
 document.querySelectorAll(".filter-btn").forEach(btn => {
