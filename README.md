@@ -8,37 +8,28 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 ## Features
 
 - Add tasks using the **Add** button or by pressing **Enter**
-- **Search tasks** with a live search bar
-- **Filter tasks** by:
-  - All
-  - Active
-  - Completed
+- **Live search** with instant filtering
+- Filter tasks by **All**, **Active**, or **Completed**
 - **Edit tasks** using a dedicated Edit button
 - Mark tasks as complete or restore them
-- Delete individual tasks
-- Delete tasks directly from both active and completed sections
-- Automatic timestamps for:
-  - When a task is **added**
-  - When a task is **completed**
+- Delete tasks from both active and completed sections
+- Automatic timestamps for when tasks are **added** and **completed**
 - Separate **Active Tasks** and **Completed Tasks** sections
-- Independent bulk delete buttons for:
+- Independent bulk actions for:
   - **Active tasks**
   - **Completed tasks**
-- Bulk delete buttons:
-  - Are **disabled** when their list is empty
-  - Become **fully active and red** when tasks are present
+- Bulk action buttons:
+  - Are **disabled** when no tasks are present
+  - Become **active and visually emphasized** when available
 - **Dark Mode toggle** with persistent theme storage
 - All text, inputs, and placeholders adapt correctly to dark mode
 - Confirmation required when deleting completed tasks
-- Undo support for bulk delete actions
-- Trash section for recovering deleted tasks
-- Deleting a task moves it to Trash
-- Tasks can be restored or permanently deleted from Trash
-- Bulk actions move tasks to Trash instead of deleting permanently
-- Bulk action to move all completed tasks to Trash
-- Inline confirmation message when completed tasks are moved to Trash
-- Undo button appears alongside the confirmation message for quick recovery
-- Undo and status feedback are displayed together above the Trash section
+- **Undo support** for bulk actions
+- **Trash section** for safe task recovery
+- Deleting a task moves it to Trash instead of deleting permantently
+- Tasks can be **restored or permanently deleted** from Trash
+- Bulk actions move tasks to Trash with **inline confirmation feedback**
+- Undo and status feedback are displayed **side‑by‑side above the Trash section**
 - Persistent storage using `localStorage`
 - Clean, modern UI with subtle styling
 - Fully responsive layout
