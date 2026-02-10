@@ -26,7 +26,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 ### Search & Filtering
 
 - Live search with instant filtering
-- Filter tasks by All, Active, or Completed
+- Filter tasks by All, Active, Completed, or Upcoming (scheduled tasks only)
 
 ### Task Management
 
@@ -79,9 +79,8 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
-- Format scheduled dates
-- Scheduled Tasks having own button next to All, Active and Completed called Upcoming so can see Scheduled Tasks
 - Adding sorting by scheduled date
+- Format scheduled dates
 - Once task reaches the scheduled time, removing the Scheduled and have it be active
 
 - Choosing if want to add a task or a reminder

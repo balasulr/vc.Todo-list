@@ -47,8 +47,15 @@ function renderTasks() {
 
     if (task.trash) return true; // Always show trashed tasks in the trash section
 
-    if (currentFilter === "active") return !task.completed && matchesSearch;
-    if (currentFilter === "completed") return task.completed && matchesSearch;
+    if (currentFilter === "active")
+      return !task.completed && matchesSearch;
+
+    if (currentFilter === "completed")
+      return task.completed && matchesSearch;
+
+    if (currentFilter === "upcoming")
+      return task.scheduledFor && !task.trash && matchesSearch;
+
     return matchesSearch;
 });
 
