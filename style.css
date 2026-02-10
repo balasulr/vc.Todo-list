@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  width: 500px;
+  width: 650px;
   background: white;
   padding: 20px;
   border-radius: 12px;
@@ -317,4 +317,21 @@ body.dark #searchInput {
 
 .back-to-top:hover {
   opacity: 1;
+}
+
+/* Schedule Section */
+.schedule-fields {
+  display: flex;
+  gap: 8px;
+  margin-left: 10px;
+}
+
+.schedule-toggle {
+  margin-left: 10px;
+  padding: 6px 10px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }

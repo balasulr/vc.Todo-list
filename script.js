@@ -140,7 +140,15 @@ function addTask() {
 
   let scheduledFor = null;
 
+  // Validate past date/time and show error if invalid
   if (dateInput && timeInput) {
+    const selectedDateTime = new Date(`${dateInput}T${timeInput}`);
+    const now = new Date();
+
+    if (selectedDateTime < now) {
+      alert("Scheduled time cannot be in the past.");
+      return;
+    }
     scheduledFor = `${dateInput} ${timeInput}`;
   }
 
@@ -160,6 +168,15 @@ function addTask() {
   save();
 }
 
+const toggleScheduleBtn = document.getElementById("toggleScheduleBtn");
+const scheduleFields = document.getElementById("scheduleFields");
+
+toggleScheduleBtn.addEventListener("click", () => {
+  const isVisible = scheduleFields.style.display === "flex";
+
+  scheduleFields.style.display = isVisible ? "none" : "flex";
+  toggleScheduleBtn.textContent = isVisible ? "Schedule Task" : "Hide Scheduler";
+});
 
 function editTask(index) {
   const li = document.querySelector(`li[data-index="${index}"]`);

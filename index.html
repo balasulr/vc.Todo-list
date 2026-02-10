@@ -40,8 +40,12 @@
       <div class="input-row">
         <input id="taskInput" type="text" placeholder="Add a new task..." />
 
-        <input id="taskDate" type="date" />
-        <input id="taskTime" type="time" />
+        <button id="toggleScheduleBtn" class="schedule-toggle">Schedule Task</button>
+
+        <div id="scheduleFields" class="schedule-fields" style="display: none;">
+          <input id="taskDate" type="date" />
+          <input id="taskTime" type="time" />
+        </div>
 
         <button id="addBtn">Add</button>
       </div>
