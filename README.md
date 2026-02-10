@@ -60,7 +60,13 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
-- Scheduling future tasks (choosing date & time in a calender)
+- When adding task, button to choose if want to schedule task, which opens the date and time picker
+- Adding validation for if user chooses date in the past
+- Scheduled Tasks having own button next to All, Active and Completed called Upcoming so can see Scheduled Tasks
+- Adding sorting by scheduled date
+- Once task reaches the scheduled time, removing the Scheduled and have it be active
+- Ability to edit date and time when Editing tasks
+
 - Choosing if want to add a task or a reminder
 - Task categories or tags
 - Add calender
