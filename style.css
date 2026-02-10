@@ -46,10 +46,6 @@ button {
   cursor: pointer;
 }
 
-button:first-child {
-  background: #6c63ff;
-}
-
 /* Task List */
 li {
   display: flex;
@@ -169,7 +165,7 @@ li {
 
 .filter-btn {
   flex: 1;
-  background: #d0d4ff;
+  background: #e5e5e5;
   color: #333;
   padding: 8px;
   border-radius: 6px;
@@ -214,7 +210,7 @@ body.dark li.completed {
 }
 
 body.dark .filter-btn {
-  background: #555;
+  background: #e5e5e5;
   color: white;
 }
 

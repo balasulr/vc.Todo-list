@@ -52,6 +52,15 @@ function renderTasks() {
     return matchesSearch;
 });
 
+// Update filter button highlight
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.classList.remove("active");
+});
+
+document
+  .querySelector(`.filter-btn[data-filter="${currentFilter}"]`)
+  .classList.add("active");
+
   filteredTasks.forEach((task, index) => {
     const li = document.createElement("li");
     li.setAttribute("data-index", index);
