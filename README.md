@@ -55,8 +55,12 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
+- Button to choose if want to jump down to To-Do List or Completed Tasks or Trash
+- Scheduling future tasks (choosing date & time in a calender)
+- Choosing if want to add a task or a reminder
 - Task categories or tags
 - Add calender
+- Duplicate tasks
 - Drag‑and‑drop task reordering
 - Add smooth transitions between light/dark
 - Animations for adding, editing and deleting tasks
