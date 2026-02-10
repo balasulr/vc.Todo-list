@@ -28,6 +28,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - **Trash section** for safe task recovery
 - Deleting a task moves it to Trash instead of deleting permantently
 - Tasks can be **restored or permanently deleted** from Trash
+- Clear Trash button with confirmation and inline status feedback
 - Bulk actions move tasks to Trash with **inline confirmation feedback**
 - Undo and status feedback are displayed **side‑by‑side above the Trash section**
 - Persistent storage using `localStorage`
@@ -46,6 +47,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - Clear separation of destructive actions
 - Visual affordances for edit, complete, restore, and delete
 - Defensive UX (disabled actions when unavailable)
+- Defensive UX for destructive actions with confirmation and clear feedback
 - Clean DOM updates with a single render cycle
 - Clear, non‑destructive feedback for bulk actions
 - Inline status messaging paired with Undo for user confidence
@@ -53,8 +55,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
-- Clear trash button with confirmation and status message
-- Add smooth transitions between light/dark
-- Animations for adding, editing and deleting tasks
 - Task categories or tags
 - Drag‑and‑drop task reordering
+- Add smooth transitions between light/dark
+- Animations for adding, editing and deleting tasks

@@ -269,3 +269,9 @@ body.dark #searchInput {
   gap: 12px;
   margin: 12px 0;
 }
+
+#clearTrashBtn {
+  background-color: #e53935;
+  color: white;
+  opacity: 1;
+}

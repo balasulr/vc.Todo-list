@@ -103,6 +103,11 @@ function renderTasks() {
   // Completed tasks delete button
   clearCompletedBtn.disabled = !hasCompletedTasks;
   clearCompletedBtn.classList.toggle("active", hasCompletedTasks);
+
+  //const hasTrashItems = tasks.some(task => task.trash);
+  //clearTrashBtn.disabled = !hasTrashItems;
+  //clearTrashBtn.classList.toggle("active", hasTrashItems);
+
 }
 
 function addTask() {
@@ -288,3 +293,16 @@ function permanentDelete(index) {
   tasks.splice(index, 1);
   save();
 }
+
+const clearTrashBtn = document.getElementById("clearTrashBtn");
+
+function clearTrash() {
+  if (!confirm("Permanently delete all items in Trash?")) return;
+
+  tasks = tasks.filter(task => !task.trash);
+
+  showStatus("Trash cleared.");
+  save();
+}
+
+clearTrashBtn.addEventListener("click", clearTrash);
