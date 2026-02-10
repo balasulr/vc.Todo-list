@@ -56,6 +56,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 ## Future Enhancements
 
 - Task categories or tags
+- Add calender
 - Drag‑and‑drop task reordering
 - Add smooth transitions between light/dark
 - Animations for adding, editing and deleting tasks
