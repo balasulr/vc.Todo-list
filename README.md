@@ -34,6 +34,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - Trash section for recovering deleted tasks
 - Deleting a task moves it to Trash
 - Tasks can be restored or permanently deleted from Trash
+- Bulk actions move tasks to Trash instead of deleting permanently
 - Persistent storage using `localStorage`
 - Clean, modern UI with subtle styling
 - Fully responsive layout

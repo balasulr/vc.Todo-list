@@ -186,10 +186,16 @@ function deleteActiveTasks() {
 }
 
 function deleteCompletedTasks() {
-  if (!confirm("Delete all completed tasks?")) return;
+  if (!confirm("Move all completed tasks to Trash?")) return;
 
-  lastBulkDelete = tasks.filter(task => task.completed)
-  tasks = tasks.filter(task => !task.completed);
+  lastBulkDelete = tasks.filter(task => task.completed && !task.trash);
+
+  tasks.forEach(task => {
+    if (task.completed) {
+      task.trash = true;
+    }
+  });
+
   save();
 }
 
@@ -252,7 +258,10 @@ undoBtn.style.display = lastBulkDelete ? "block" : "none";
 undoBtn.addEventListener("click", () => {
   if (!lastBulkDelete) return;
 
-  tasks = tasks.concat(lastBulkDelete);
+  lastBulkDelete.forEach(task => {
+    task.trash = false;
+  });
+
   lastBulkDelete = null;
   undoBtn.style.display = "none";
   save();
