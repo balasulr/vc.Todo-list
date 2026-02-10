@@ -54,9 +54,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
-- Add confirmation only for completed deletes
-- Undo for bulk delete actions
-- Trash/ archive section
+- If bulk delete completed tasks, want button to say move to trash
 - Add smooth transitions between light/dark
 - Animations for adding, editing and deleting tasks
 - Task categories or tags
