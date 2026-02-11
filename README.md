@@ -84,12 +84,15 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
+- Reset App Data button
 - Once task reaches the scheduled time, removing the Scheduled and have it be active
+- Migration step with auto‑upgrade old tasks instead of requiring a manual clear
+- Color badges (Blue = Scheduled, Red = Overdue, Green = Completed)
 
 - Choosing if want to add a task or a reminder
 - Task categories or tags
 - Add calender
-- Duplicate tasks
+- Ability to duplicate tasks
 - Drag‑and‑drop task reordering
 - Add smooth transitions between light/dark
 - Animations for adding, editing and deleting tasks
