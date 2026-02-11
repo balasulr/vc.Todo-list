@@ -58,6 +58,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 - Smooth in‑page navigation and clear visual affordances
 - Defensive UX for destructive actions with confirmation prompts
 - Overdue scheduled tasks are automatically highlighted with clear visual styling
+- Scheduled dates are automatically formatted for clearer readability
 
 ### Persistence
 
@@ -83,7 +84,6 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 ## Future Enhancements
 
-- Format scheduled dates
 - Once task reaches the scheduled time, removing the Scheduled and have it be active
 
 - Choosing if want to add a task or a reminder

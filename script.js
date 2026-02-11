@@ -30,6 +30,21 @@ window.addEventListener("scroll", () => {
   btn.style.display = window.scrollY > 300 ? "block" : "none";
 });
 
+function formatScheduledDate(dateString) {
+  if (!dateString) return "";
+
+  const [date, time] = dateString.split(" ");
+  const d = new Date(`${date}T${time}`);
+
+  return d.toLocaleString([], {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
 function renderTasks() {
   // Clear existing lists
   list.innerHTML = "";
@@ -139,7 +154,7 @@ document
         <strong class="task-text">${task.text}</strong><br>
         <small>Added: ${task.createdAt}</small><br>
         <small>Completed: ${task.completedAt}</small><br>
-        ${task.scheduledFor ? `<br><small>Scheduled: ${task.scheduledFor}</small>` : ""}
+        ${task.scheduledFor ? `<small>Scheduled: ${formatScheduledDate(task.scheduledFor)}</small>` : ""}
       </div>
       <div>
         <button class="restore-btn" onclick="toggleComplete(${originalIndex})">↩</button>
@@ -164,8 +179,7 @@ document
       <div>
         <strong class="task-text">${task.text}</strong><br>
         <small>Added: ${task.createdAt}</small><br>
-        ${task.scheduledFor ? `<small>Scheduled: ${task.scheduledFor}</small>` : ""}
-        <small>${task.scheduledFor ? `Scheduled: ${task.scheduledFor}` : ""}</small>
+        ${task.scheduledFor ? `<small>Scheduled: ${formatScheduledDate(task.scheduledFor)}</small>` : ""}
         ${isOverdue ? `<br><small class="overdue">Overdue</small>` : ""}
       </div>
       <div>
@@ -201,7 +215,7 @@ document
       <div>
         <strong class="task-text">${task.text}</strong><br>
         <small>Status: ${task.completed ? "Completed" : "Active"}</small><br>
-        <small>Scheduled: ${task.scheduledFor}</small>
+        <small>Scheduled: ${formatScheduledDate(task.scheduledFor)}</small>
         ${isOverdue ? `<br><small class="overdue">Overdue</small>` : ""}
       </div>
     `;
