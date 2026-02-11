@@ -150,11 +150,23 @@ document
   } else {
     hasActiveTasks = true;
 
+    // Detect overdue tasks
+    let isOverdue = false;
+    if (task.scheduledFor && !task.completed) {
+      const scheduledDate = new Date(task.scheduledFor);
+      const now = new Date();
+      if (scheduledDate < now) {
+        isOverdue = true;
+      }
+    }
+
     li.innerHTML = `
       <div>
         <strong class="task-text">${task.text}</strong><br>
-        <small>Added: ${task.createdAt}</small>
+        <small>Added: ${task.createdAt}</small><br>
+        ${task.scheduledFor ? `<small>Scheduled: ${task.scheduledFor}</small>` : ""}
         <small>${task.scheduledFor ? `Scheduled: ${task.scheduledFor}` : ""}</small>
+        ${isOverdue ? `<br><small class="overdue">Overdue</small>` : ""}
       </div>
       <div>
         <button class="complete-btn" onclick="toggleComplete(${originalIndex})">✔</button>
@@ -168,20 +180,35 @@ document
 
   // Build Upcoming section (all scheduled tasks, regardless of filter)
   const upcomingTasks = tasks
-    .filter(task => task.scheduledFor && !task.trash)
+    .filter(task => task.scheduledFor && !task.trash && !task.completed)
     .sort((a, b) => new Date(a.scheduledFor) - new Date(b.scheduledFor));
 
   upcomingTasks.forEach(task => {
     const li = document.createElement("li");
     const index = tasks.indexOf(task);
 
+    // Detect overdue tasks (scheduled time < now AND not completed)
+    let isOverdue = false;
+    if (task.scheduledFor && !task.completed) {
+      const scheduledDate = new Date(task.scheduledFor);
+      const now = new Date();
+      if (scheduledDate < now) {
+        isOverdue = true;
+      }
+    }
+
     li.innerHTML = `
       <div>
         <strong class="task-text">${task.text}</strong><br>
         <small>Status: ${task.completed ? "Completed" : "Active"}</small><br>
         <small>Scheduled: ${task.scheduledFor}</small>
+        ${isOverdue ? `<br><small class="overdue">Overdue</small>` : ""}
       </div>
     `;
+
+    if (isOverdue) {
+      li.classList.add("overdue-task");
+    }
 
     upcomingList.appendChild(li);
   });
@@ -208,10 +235,6 @@ function addTask() {
     const selectedDateTime = new Date(`${dateInput}T${timeInput}`);
     const now = new Date();
 
-    if (selectedDateTime < now) {
-      alert("Scheduled time cannot be in the past.");
-      return;
-    }
     scheduledFor = `${dateInput} ${timeInput}`;
   }
 
@@ -310,11 +333,6 @@ function editTask(index) {
   if (userEnteredSchedule) {
     const selectedDateTime = new Date(`${newDate}T${newTime}`);
     const now = new Date();
-
-    if (selectedDateTime < now) {
-      alert("Scheduled time cannot be in the past.");
-      return;
-    }
 
     task.scheduledFor = `${newDate} ${newTime}`;
   }

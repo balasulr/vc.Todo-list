@@ -366,3 +366,14 @@ body.dark #searchInput {
   background: #d32f2f;
   transform: scale(1.05);
 }
+
+/* Overdue Task Styling */
+.overdue-task {
+  border-left: 4px solid #e53935;
+  background: rgba(229, 57, 53, 0.08);
+}
+
+.overdue {
+  color: #e53935;
+  font-weight: bold;
+}
