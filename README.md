@@ -40,6 +40,7 @@ This project focuses on **clear UX, intentional interactions, and state‑driven
 
 - Separate Active Tasks, Completed Tasks, and Trash sections
 - Dedicated Upcoming Tasks section showing all scheduled tasks with their current status
+- When the Upcoming filter is selected, the Upcoming Tasks section moves above Active Tasks for clearer visibility
 - Trash‑first deletion model to prevent accidental data loss
 - Restore or permanently delete tasks from Trash
 

@@ -43,6 +43,33 @@ function renderTasks() {
   const trashList = document.getElementById("trashList");
   trashList.innerHTML = "";
 
+  // Reorder sections when Upcoming filter is selected
+  const activeSection = document.getElementById("activeSection");
+  const completedSection = document.getElementById("completedSection");
+  const upcomingSection = document.getElementById("upcomingSection");
+  const trashSection = document.getElementById("trashSection");
+
+  const activeListEl = document.getElementById("taskList");
+  const completedListEl = document.getElementById("completedList");
+  const upcomingListEl = document.getElementById("upcomingList");
+  const trashListEl = document.getElementById("trashList");
+
+  // If Upcoming filter is selected → move Upcoming section above Active
+  if (currentFilter === "upcoming") {
+    activeSection.parentNode.insertBefore(upcomingSection, activeSection);
+    activeSection.parentNode.insertBefore(upcomingListEl, activeSection);
+  } else {
+    // Restore original order: Active → Completed → Upcoming → Trash
+    activeSection.parentNode.insertBefore(activeSection, completedSection);
+    activeSection.parentNode.insertBefore(activeListEl, completedSection);
+
+    completedSection.parentNode.insertBefore(completedSection, upcomingSection);
+    completedSection.parentNode.insertBefore(completedListEl, upcomingSection);
+
+    upcomingSection.parentNode.insertBefore(upcomingSection, trashSection);
+    upcomingSection.parentNode.insertBefore(upcomingListEl, trashSection);
+  }
+
   // Track if there are active or completed tasks for bulk delete button states
   let hasActiveTasks = false;
   let hasCompletedTasks = false;
